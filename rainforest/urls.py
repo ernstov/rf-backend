@@ -16,6 +16,37 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from rest_framework import permissions
+
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
+]
+
+admin.site.site_header = "Rainforest"
+admin.site.site_title = "Rainforest Admin Portal"
+admin.site.index_title = "Rainforest Admin"
+
+# swagger
+api_info = openapi.Info(
+    title="Rainforest",
+    default_version="v1",
+    description="API documentation for Rainforest App"
+)
+
+schema_view = get_schema_view(
+    api_info,
+    public=True,
+    permission_classes=(permissions.AllowAny, ),
+) 
+
+urlpatterns += [
+    path(
+        'api-docs/',
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="api_docs"
+    )
 ]
