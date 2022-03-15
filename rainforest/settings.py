@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
 
+    'drf_yasg',
+
     'core',
 ]
 
@@ -146,3 +148,8 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'core.User'
+
+# Swagger settings for api docs
+SWAGGER_SETTINGS = {
+    "DEFAULT_INFO": f"{ROOT_URLCONF}.api_info",
+}
