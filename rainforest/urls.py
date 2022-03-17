@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from rest_framework import permissions
 
@@ -23,7 +23,9 @@ from drf_yasg import openapi
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
 ]
 
 admin.site.site_header = "Rainforest"
