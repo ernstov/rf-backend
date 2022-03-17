@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     'drf_yasg',
+    'djoser',
 
     'core',
 ]
@@ -152,4 +153,17 @@ AUTH_USER_MODEL = 'core.User'
 # Swagger settings for api docs
 SWAGGER_SETTINGS = {
     "DEFAULT_INFO": f"{ROOT_URLCONF}.api_info",
+    'SECURITY_DEFINITIONS': {
+         'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'header': 'header'
+        }
+    },
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'core.serializers.CustomUserSerializer'
+    }
 }
