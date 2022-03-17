@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'drf_yasg',
     'djoser',
+    'corsheaders',
 
     'core',
 ]
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -167,3 +169,8 @@ DJOSER = {
         'user_create': 'core.serializers.CustomUserSerializer'
     }
 }
+
+# Allowed Cors Origins
+CORS_ALLOWED_ORIGINS = [
+    x.strip() for x in os.environ.get("CORS_ALLOWED_ORIGINS").split(',')
+]
