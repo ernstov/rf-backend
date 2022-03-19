@@ -31,6 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
+
+REST_USE_JWT = True
+
 
 # Application definition
 
@@ -43,11 +47,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'rest_framework_simplejwt',
+    'rest_auth',
+    'rest_auth.registration',
 
     'drf_yasg',
     'djoser',
     'corsheaders',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     'core',
 ]
@@ -116,6 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -143,7 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -185,3 +199,18 @@ EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ['EMAIL_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": os.environ.get("GOOGLE_SSO_CLIENT"),
+            "secret": os.environ.get("GOOGLE_SSO_SECRET"),
+        },
+    }
+}
+
+# rest-auth configurations
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'core.serializers.CustomUserSerializer'
+}
