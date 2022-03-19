@@ -164,9 +164,12 @@ SWAGGER_SETTINGS = {
     },
 }
 
+# Djoser configurations
 DJOSER = {
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'SERIALIZERS': {
-        'user_create': 'core.serializers.CustomUserSerializer'
+        'user_create': 'core.serializers.CustomUserSerializer',
     }
 }
 
@@ -174,3 +177,11 @@ DJOSER = {
 CORS_ALLOWED_ORIGINS = [
     x.strip() for x in os.environ.get("CORS_ALLOWED_ORIGINS").split(',')
 ]
+
+# Email Backend
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ['EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
