@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_auth',
     'rest_auth.registration',
+    'rest_framework_simplejwt',
 
     'drf_yasg',
     'djoser',
@@ -157,7 +158,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
