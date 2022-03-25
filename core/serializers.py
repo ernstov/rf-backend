@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext as _
 
@@ -20,6 +21,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
                 _("Password1 and Password2 should be same.")
             )
 
+        if attrs["email"].split("@")[-1] not in settings.LIST_OF_ALLOWED_COMPANIES:
+            raise serializers.ValidationError(_("Email domain not allowed"))
         return attrs
 
     def create(self, validated_data):

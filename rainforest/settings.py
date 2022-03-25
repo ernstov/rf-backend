@@ -215,3 +215,7 @@ SOCIALACCOUNT_PROVIDERS = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'core.serializers.CustomUserSerializer'
 }
+
+LIST_OF_ALLOWED_COMPANIES = [
+    "one-five.com"
+]
