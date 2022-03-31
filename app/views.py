@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions, status, mixins
+from rest_framework import viewsets, permissions, status, mixins, filters
 from rest_framework.response import Response
 
 from app import models
@@ -9,6 +9,8 @@ class WorkflowViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.WorkflowSerializer
     queryset = models.Workflow.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
 
 
 class AssetsViewset(
@@ -42,20 +44,30 @@ class AssetsViewset(
 
 
 class OwnerViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.OwnerSerializer
     queryset = models.Owner.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
 
 
 class InventorViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.InventorSerializer
     queryset = models.Inventor.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
 
 
 class TechnologyViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.TechbologySerializer
     queryset = models.TechnologyType.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
 
 
 class StatusViewset(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.StatusSerializer
     queryset = models.Status.objects.all()
