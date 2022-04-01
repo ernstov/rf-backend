@@ -71,25 +71,25 @@ class OwnerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Owner
-        fields = ("name", "description", "owner_type", "archived")
+        fields = ("id", "name", "description", "owner_type", "archived")
 
 
 class InventorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Inventor
-        fields = ("name", "description", "archived")
+        fields = ("id", "name", "description", "archived")
 
 
 class TechbologySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.TechnologyType
-        fields = ("name", "description", "archived")
+        fields = ("id", "name", "description", "archived")
 
 
 class StatusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Status
-        fields = ("name", "description", "archived")
+        fields = ("id", "name", "description", "archived")
