@@ -71,6 +71,8 @@ class StatusViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.StatusSerializer
     queryset = models.Status.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["name"]
 
 
 class BulkUploadViewset(mixins.CreateModelMixin, viewsets.GenericViewSet):
