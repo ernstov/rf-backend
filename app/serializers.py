@@ -168,9 +168,9 @@ class BulkuploadSerializer(serializers.Serializer):
             asset = models.Asset.objects.create(
                 family_id=row_dict["Cipher Family ID"],
                 title=row_dict["Title"],
-                publication_date=row_dict["Publication Date"],
-                priority_date=row_dict["Priority Date"],
-                expiry_date=row_dict["Expiry Date"],
+                publication_date=row_dict.get("Publication Date", ""),
+                priority_date=row_dict.get("Priority Date", ""),
+                expiry_date=row_dict.get("Expiry Date", ""),
                 patent_numbers=[x.strip() for x in row_dict["Patent Numbers"].split(" ")],
                 status=models.Status.objects.get_or_create(name=row_dict["Status"])[0],
                 cipher_score=row_dict["Score"] if row_dict["Score"] else 0,
@@ -182,7 +182,7 @@ class BulkuploadSerializer(serializers.Serializer):
                 added_by=self.context["request"].user
             )
 
-            if row_dict["Granted Date"] == pd.notnull:
+            if row_dict["Granted Date"] is not np.na:
                 asset.granted_date = row_dict["Granted Date"]
                 asset.save()
 
