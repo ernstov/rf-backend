@@ -1,0 +1,438 @@
+[
+    {
+        "code": "AM",
+        "name": "Armenia"
+    },
+    {
+        "code": "AP",
+        "name": "African Regional Industrial Property Organization"
+    },
+    {
+        "code": "AR",
+        "name": "Argentina"
+    },
+    {
+        "code": "AT",
+        "name": "Austria"
+    },
+    {
+        "code": "AU",
+        "name": "Australia"
+    },
+    {
+        "code": "BA",
+        "name": "Bosnia and Herzegovina"
+    },
+    {
+        "code": "BE",
+        "name": "Belgium"
+    },
+    {
+        "code": "BG",
+        "name": "Bulgaria"
+    },
+    {
+        "code": "BR",
+        "name": "Brazil"
+    },
+    {
+        "code": "BY",
+        "name": "Belarus"
+    },
+    {
+        "code": "CA",
+        "name": "Canada"
+    },
+    {
+        "code": "CH",
+        "name": "Switzerland"
+    },
+    {
+        "code": "CL",
+        "name": "Chile"
+    },
+    {
+        "code": "CN",
+        "name": "China"
+    },
+    {
+        "code": "CO",
+        "name": "Colombia"
+    },
+    {
+        "code": "CR",
+        "name": "Costa Rica"
+    },
+    {
+        "code": "CS",
+        "name": "Czechoslovakia"
+    },
+    {
+        "code": "CU",
+        "name": "Cuba"
+    },
+    {
+        "code": "CY",
+        "name": "Cyprus"
+    },
+    {
+        "code": "CZ",
+        "name": "Czech Republic"
+    },
+    {
+        "code": "DD",
+        "name": "German Democratic Republic"
+    },
+    {
+        "code": "DE",
+        "name": "Germany"
+    },
+    {
+        "code": "DK",
+        "name": "Denmark"
+    },
+    {
+        "code": "DO",
+        "name": "Dominican Republic"
+    },
+    {
+        "code": "DZ",
+        "name": "Algeria"
+    },
+    {
+        "code": "EA",
+        "name": "Eurasian Patent Organization"
+    },
+    {
+        "code": "EC",
+        "name": "Ecuador"
+    },
+    {
+        "code": "EE",
+        "name": "Estonia"
+    },
+    {
+        "code": "EG",
+        "name": "Egypt"
+    },
+    {
+        "code": "EM",
+        "name": "European Union Intellectual Property Office"
+    },
+    {
+        "code": "EP",
+        "name": "European Patent Office"
+    },
+    {
+        "code": "ES",
+        "name": "Spain"
+    },
+    {
+        "code": "FI",
+        "name": "Finland"
+    },
+    {
+        "code": "FR",
+        "name": "France"
+    },
+    {
+        "code": "GB",
+        "name": "United Kingdom"
+    },
+    {
+        "code": "GC",
+        "name": "Gulf Cooperation Council"
+    },
+    {
+        "code": "GE",
+        "name": "Georgia"
+    },
+    {
+        "code": "GR",
+        "name": "Greece"
+    },
+    {
+        "code": "GT",
+        "name": "Guatemala"
+    },
+    {
+        "code": "HN",
+        "name": "Honduras"
+    },
+    {
+        "code": "HR",
+        "name": "Croatia"
+    },
+    {
+        "code": "HU",
+        "name": "Hungary"
+    },
+    {
+        "code": "ID",
+        "name": "Indonesia"
+    },
+    {
+        "code": "IE",
+        "name": "Ireland"
+    },
+    {
+        "code": "IL",
+        "name": "Israel"
+    },
+    {
+        "code": "IN",
+        "name": "India"
+    },
+    {
+        "code": "IS",
+        "name": "Iceland"
+    },
+    {
+        "code": "IT",
+        "name": "Italy"
+    },
+    {
+        "code": "JO",
+        "name": "Jordan"
+    },
+    {
+        "code": "JP",
+        "name": "Japan"
+    },
+    {
+        "code": "KE",
+        "name": "Kenya"
+    },
+    {
+        "code": "KG",
+        "name": "Kyrgyzstan"
+    },
+    {
+        "code": "KZ",
+        "name": "Kazakhstan"
+    },
+    {
+        "code": "LT",
+        "name": "Lithuania"
+    },
+    {
+        "code": "LU",
+        "name": "Luxembourg"
+    },
+    {
+        "code": "LV",
+        "name": "Latvia"
+    },
+    {
+        "code": "MA",
+        "name": "Morocco"
+    },
+    {
+        "code": "MC",
+        "name": "Monaco"
+    },
+    {
+        "code": "MD",
+        "name": "Republic of Moldova"
+    },
+    {
+        "code": "ME",
+        "name": "Montenegro"
+    },
+    {
+        "code": "MN",
+        "name": "Mongolia"
+    },
+    {
+        "code": "MO",
+        "name": "Macao"
+    },
+    {
+        "code": "MT",
+        "name": "Malta"
+    },
+    {
+        "code": "MW",
+        "name": "Malawi"
+    },
+    {
+        "code": "MX",
+        "name": "Mexico"
+    },
+    {
+        "code": "MY",
+        "name": "Malaysia"
+    },
+    {
+        "code": "NI",
+        "name": "Nicaragua"
+    },
+    {
+        "code": "NL",
+        "name": "Netherlands"
+    },
+    {
+        "code": "NO",
+        "name": "Norway"
+    },
+    {
+        "code": "NZ",
+        "name": "New Zealand"
+    },
+    {
+        "code": "OA",
+        "name": "African Intellectual Property Organization"
+    },
+    {
+        "code": "PA",
+        "name": "Panama"
+    },
+    {
+        "code": "PE",
+        "name": "Peru"
+    },
+    {
+        "code": "PH",
+        "name": "Philippines"
+    },
+    {
+        "code": "PL",
+        "name": "Poland"
+    },
+    {
+        "code": "PT",
+        "name": "Portugal"
+    },
+    {
+        "code": "RO",
+        "name": "Romania"
+    },
+    {
+        "code": "RS",
+        "name": "Serbia"
+    },
+    {
+        "code": "RU",
+        "name": "Russian Federation"
+    },
+    {
+        "code": "SA",
+        "name": "Saudi Arabia"
+    },
+    {
+        "code": "SE",
+        "name": "Sweden"
+    },
+    {
+        "code": "SG",
+        "name": "Singapore"
+    },
+    {
+        "code": "SI",
+        "name": "Slovenia"
+    },
+    {
+        "code": "SK",
+        "name": "Slovakia"
+    },
+    {
+        "code": "SM",
+        "name": "San Marino"
+    },
+    {
+        "code": "SU",
+        "name": "Soviet Union (USSR)"
+    },
+    {
+        "code": "SV",
+        "name": "El Salvador"
+    },
+    {
+        "code": "TH",
+        "name": "Thailand"
+    },
+    {
+        "code": "TJ",
+        "name": "Tajikistan"
+    },
+    {
+        "code": "TN",
+        "name": "Tunisia"
+    },
+    {
+        "code": "TR",
+        "name": "Turkey"
+    },
+    {
+        "code": "TT",
+        "name": "Trinidad and Tobago"
+    },
+    {
+        "code": "TW",
+        "name": "Chinese Taipei"
+    },
+    {
+        "code": "UA",
+        "name": "Ukraine"
+    },
+    {
+        "code": "US",
+        "name": "United States of America"
+    },
+    {
+        "code": "UY",
+        "name": "Uruguay"
+    },
+    {
+        "code": "UZ",
+        "name": "Uzbekistan"
+    },
+    {
+        "code": "ZA",
+        "name": "South Africa"
+    },
+    {
+        "code": "ZM",
+        "name": "Zambia"
+    },
+    {
+        "code": "ZW",
+        "name": "Zimbabwe"
+    },
+    {
+        "code": "AL",
+        "name": "Albania"
+    },
+    {
+        "code": "HK",
+        "name": "Hong Kong (China)"
+    },
+    {
+        "code": "KR",
+        "name": "Republic of Korea"
+    },
+    {
+        "code": "LI",
+        "name": "Liechtenstein"
+    },
+    {
+        "code": "MK",
+        "name": "Republic of North Macedonia"
+    },
+    {
+        "code": "NC",
+        "name": "New Caledonia"
+    },
+    {
+        "code": "VN",
+        "name": "Vietnam"
+    },
+    {
+        "code": "WO",
+        "name": "World Intellectual Property Organisation (WIPO)"
+    },
+    {
+        "code": "YU",
+        "name": "Yugoslavia (Serbia and Montenegro)"
+    }
+]

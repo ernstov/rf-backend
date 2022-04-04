@@ -71,3 +71,18 @@ class StatusViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.StatusSerializer
     queryset = models.Status.objects.all()
+
+
+class BulkUploadViewset(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = serializers.BulkuploadSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.serializer_class(
+            data=request.data,
+            context={"request": request}
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({}, status=status.HTTP_201_CREATED)

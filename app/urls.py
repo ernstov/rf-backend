@@ -10,5 +10,9 @@ router.register(r'owner', views.OwnerViewset, basename="owner")
 router.register(r'inventor', views.InventorViewset, basename="inventor")
 router.register(r'technology', views.TechnologyViewset, basename="technology")
 router.register(r'status', views.StatusViewset, basename="status")
-
+router.register(
+    r'bulk-upload',
+    views.BulkUploadViewset,
+    basename="bulk-upload"
+)
 urlpatterns = router.urls
