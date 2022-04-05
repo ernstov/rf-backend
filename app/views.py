@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from app import models
 from app import serializers
+from app.pagination import CustomPageNumberPagination
 
 
 class WorkflowViewSet(viewsets.ModelViewSet):
@@ -20,6 +21,7 @@ class AssetsViewset(
     viewsets.GenericViewSet):
 
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = CustomPageNumberPagination
 
     def get_serializer_class(self):
         """
