@@ -1,6 +1,8 @@
 from rest_framework import viewsets, permissions, status, mixins, filters
 from rest_framework.response import Response
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 from app import models
 from app import serializers
 from app.pagination import CustomPageNumberPagination
@@ -10,8 +12,9 @@ class WorkflowViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.WorkflowSerializer
     queryset = models.Workflow.objects.all()
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ["name"]
+    filterset_fields = ["type"]
 
 
 class AssetsViewset(

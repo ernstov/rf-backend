@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'rest_framework_simplejwt',
+    'django_filters',
 
     'drf_yasg',
     'djoser',
