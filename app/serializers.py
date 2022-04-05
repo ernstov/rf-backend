@@ -183,7 +183,7 @@ class BulkuploadSerializer(serializers.Serializer):
     workflows = serializers.ListField(child=serializers.IntegerField())
 
     class Meta:
-        fields = ("file", )
+        fields = ("file", "workflows")
 
     def validate(self, attrs):
         file_ext = attrs["file"].name.split(".")[-1]
@@ -262,7 +262,7 @@ class BulkuploadSerializer(serializers.Serializer):
                 added_by=self.context["request"].user
             )
 
-            if row_dict["Granted Date"] is not np.na:
+            if row_dict["Granted Date"] is not np.nan:
                 asset.granted_date = row_dict["Granted Date"]
                 asset.save()
 
