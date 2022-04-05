@@ -3,10 +3,12 @@ import numpy as np
 
 from django.utils.translation import gettext as _
 from django.db import transaction
+from django.forms.models import model_to_dict
 
 from rest_framework import serializers, exceptions
 
 from app import models
+
 
 class WorkflowSerializer(serializers.ModelSerializer):
 
@@ -16,6 +18,58 @@ class WorkflowSerializer(serializers.ModelSerializer):
 
 
 class AssetSerializer(serializers.ModelSerializer):
+
+    def to_representation(self, data):
+        data = super().to_representation(data)
+        owners = []
+        inventors = []
+        techbologies = []
+        workflows = []
+        if data.get("owners", None):
+            for owner in data["owners"]:
+                owner_obj = model_to_dict(models.Owner.objects.get(id=owner))
+                owners.append(owner_obj)
+
+        if data.get("inventors", None):
+            for inventor in data["inventors"]:
+                inventor_obj = model_to_dict(models.Inventor.objects.get(id=inventor))
+                inventors.append(inventor_obj)
+
+        if data.get("workflow", None):
+            for workflow in data["workflow"]:
+                workflow_obj = model_to_dict(models.Workflow.objects.get(id=workflow))
+                workflows.append(workflow_obj)
+
+        if data.get("technology_types", None):
+            for technology in data["technology_types"]:
+                techbology_obj = model_to_dict(models.TechnologyType.objects.get(id=technology))
+                techbologies.append(techbology_obj)
+
+        status = models.Status.objects.get(id=data["status"])
+
+        asset_data = {
+            "uuid": data["uuid"],
+            "title": data["title"],
+            "owners": owners,
+            "inventors": inventors,
+            "patent_numbers": data.get("patent_numbers", []),
+            "family_id": data.get("family_id", ""),
+            "publication_date": data.get("publication_date", ""),
+            "priority_date": data.get("priority_date", ""),
+            "expiry_date": data.get("expiry_date", ""),
+            "technology_types": techbologies,
+            "status": {
+                "id": status.id,
+                "name": status.name
+            },
+            "workflow": workflows,
+            "abstract": data.get("abstract", ""),
+            "description": data.get("description", ""),
+            "claims": data.get("claims", ""),
+        }
+        return asset_data
+
+
 
     class Meta:
         model = models.Asset
@@ -64,6 +118,32 @@ class AssetSerializer(serializers.ModelSerializer):
 
 
 class AssetEditSerializer(serializers.ModelSerializer):
+
+    def to_representation(self, data):
+        data = super().to_representation(data)
+        techbologies = []
+        workflows = []
+
+        if data.get("workflow", None):
+            for workflow in data["workflow"]:
+                workflow_obj = model_to_dict(models.Workflow.objects.get(id=workflow))
+                workflows.append(workflow_obj)
+
+        if data.get("technology_types", None):
+            for technology in data["technology_types"]:
+                techbology_obj = model_to_dict(models.TechnologyType.objects.get(id=technology))
+                techbologies.append(techbology_obj)
+
+        status = models.Status.objects.get(id=data["status"])
+
+        return {
+            "status": {
+                "id": status.id,
+                "name": status.name
+            },
+            "techbology_types": techbologies,
+            "workflow": workflows
+        }
 
     class Meta:
         model = models.Asset
