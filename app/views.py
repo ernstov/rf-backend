@@ -1,4 +1,5 @@
-from rest_framework import viewsets, permissions, status, mixins, filters
+from django.http import Http404
+from rest_framework import viewsets, permissions, status, mixins, filters, generics
 from rest_framework.response import Response
 
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,6 +19,7 @@ class WorkflowViewSet(viewsets.ModelViewSet):
 
 
 class AssetsViewset(
+    mixins.RetrieveModelMixin,
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
     mixins.UpdateModelMixin,
@@ -34,6 +36,12 @@ class AssetsViewset(
         if self.request.method == "POST" or self.request.method == "GET":
             return serializers.AssetSerializer
         return serializers.AssetEditSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        asset = models.Asset.objects.get(uuid=self.kwargs["pk"])
+        serializer = self.get_serializer(asset)
+
+        return Response(serializer.data)
 
     def get_queryset(self):
         return models.Asset.objects.filter(added_by=self.request.user)
