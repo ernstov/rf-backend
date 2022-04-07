@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from datetime import timedelta
 import os
 from dotenv import load_dotenv
 from pathlib import Path
@@ -221,3 +222,7 @@ REST_AUTH_SERIALIZERS = {
 LIST_OF_ALLOWED_COMPANIES = [
     "one-five.com"
 ]
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1)
+}
