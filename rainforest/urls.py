@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/v1/auth/', include('djoser.urls')),
     path('api/v1/auth/', include('djoser.urls.jwt')),
     path('api/v1/auth/', include('core.urls')),
+    path("api/v1/auth/", include("allauth.urls")),
     path('api/v1/', include('app.urls')),
 ]
 
