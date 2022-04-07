@@ -27,6 +27,8 @@ class AssetsViewset(
 
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = CustomPageNumberPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["status", "workflow"]
 
     def get_serializer_class(self):
         """
