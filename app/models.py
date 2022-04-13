@@ -148,7 +148,7 @@ class Asset(UUIDBaseMixin):
     )
     owners = models.ManyToManyField(Owner)
     technology_types = models.ManyToManyField(TechnologyType)
-    workflow = models.ManyToManyField(Workflow)
+    workflow = models.ManyToManyField(Workflow, blank=True)
     pending_territories = models.ManyToManyField(
         Country,
         related_name="pending_territories",

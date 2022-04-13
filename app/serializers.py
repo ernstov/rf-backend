@@ -180,7 +180,10 @@ class StatusSerializer(serializers.ModelSerializer):
 
 class BulkuploadSerializer(serializers.Serializer):
     file = serializers.FileField()
-    workflows = serializers.ListField(child=serializers.IntegerField())
+    workflows = serializers.ListField(
+        child=serializers.IntegerField(),
+        required=False
+    )
 
     class Meta:
         fields = ("file", "workflows")
@@ -191,12 +194,13 @@ class BulkuploadSerializer(serializers.Serializer):
             raise exceptions.UnsupportedMediaType(file_ext)
         return attrs
 
-
     @transaction.atomic
     def create(self, validated_data):
         file = validated_data["file"]
         reader = pd.read_csv(file)
-        workflows = [models.Workflow.objects.get(id=workflow_id) for workflow_id in validated_data["workflows"]]
+        workflows = ''
+        if validated_data.get("workflows", None):
+            workflows = [models.Workflow.objects.get(id=workflow_id) for workflow_id in validated_data["workflows"]]
         for i, row in reader.iterrows():
             row_dict = row.to_dict()
             owners = [
@@ -244,23 +248,28 @@ class BulkuploadSerializer(serializers.Serializer):
                         raise exceptions.NotFound(
                             _(f"'{country.strip()[:2]}' country not found in database")
                         )
+            try:
+                if models.Asset.objects.filter(family_id=row_dict["Cipher Family ID"]):
+                    raise Exception("Asset already exists")
 
-            asset = models.Asset.objects.create(
-                family_id=row_dict["Cipher Family ID"],
-                title=row_dict["Title"],
-                publication_date=row_dict.get("Publication Date", ""),
-                priority_date=row_dict.get("Priority Date", ""),
-                expiry_date=row_dict.get("Expiry Date", ""),
-                patent_numbers=[x.strip() for x in row_dict["Patent Numbers"].split(" ")],
-                status=models.Status.objects.get_or_create(name=row_dict["Status"])[0],
-                cipher_score=row_dict["Score"] if row_dict["Score"] else 0,
-                pvix_score=row_dict["Pvix Score"] if row_dict["Pvix Score"] else 0,
-                backward_citations=row_dict["Backward citations"] if row_dict["Backward citations"] else 0,
-                forward_citations=row_dict["Forward citations"] if row_dict["Forward citations"] else 0,
-                future_cost_projection=row_dict["Future Cost Projection [USD]"] if row_dict["Future Cost Projection [USD]"] else 0,
-                cost_to_date=row_dict["Cost to date [USD]"] if row_dict["Cost to date [USD]"] else 0,
-                added_by=self.context["request"].user
-            )
+                asset = models.Asset.objects.create(
+                    family_id=row_dict["Cipher Family ID"],
+                    title=row_dict["Title"],
+                    publication_date=row_dict.get("Publication Date", ""),
+                    priority_date=row_dict.get("Priority Date", ""),
+                    expiry_date=row_dict.get("Expiry Date", ""),
+                    patent_numbers=[x.strip() for x in row_dict["Patent Numbers"].split(" ")],
+                    status=models.Status.objects.get_or_create(name=row_dict["Status"])[0],
+                    cipher_score=row_dict["Score"] if row_dict["Score"] else 0,
+                    pvix_score=row_dict["Pvix Score"] if row_dict["Pvix Score"] else 0,
+                    backward_citations=row_dict["Backward citations"] if row_dict["Backward citations"] else 0,
+                    forward_citations=row_dict["Forward citations"] if row_dict["Forward citations"] else 0,
+                    future_cost_projection=row_dict["Future Cost Projection [USD]"] if row_dict["Future Cost Projection [USD]"] else 0,
+                    cost_to_date=row_dict["Cost to date [USD]"] if row_dict["Cost to date [USD]"] else 0,
+                    added_by=self.context["request"].user
+                )
+            except Exception:
+                pass
 
             if row_dict["Granted Date"] is not np.nan:
                 asset.granted_date = row_dict["Granted Date"]
